@@ -1,28 +1,35 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useReducer } from 'react';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+import Store from './context';
+import reducer from './reducer';
+
+import { usePersistedContext, usePersistedReducer } from './usePersist';
+
+import Header from './components/Header';
+import ServiceList from './components/ServiceList.js';
+import ServiceForm from './components/ServiceForm';
+
+import logo from './logo.svg';
+
+function App() {
+  // create a global store to store the state
+  const globalStore = usePersistedContext(useContext(Store), 'state');
+
+  // `todos` will be a state manager to manage state.
+  const [state, dispatch] = usePersistedReducer(
+    useReducer(reducer, globalStore),
+    'state' // The localStorage key
+  );
+
+  return (
+    <Store.Provider value={{ state, dispatch }}>
+      <Header />
+      <div className="container">
+        <ServiceList />
+        <ServiceForm />
       </div>
-    );
-  }
+    </Store.Provider>
+  );
 }
 
 export default App;
