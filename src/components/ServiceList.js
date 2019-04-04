@@ -1,8 +1,25 @@
-import React, { useContext } from 'react';
-import Store from '../context';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { api } from '../config';
 
 export default function ServiceList() {
-  const { state } = useContext(Store);
+  const [services, setServices] = useState([]);
+  const [isError, setIsError] = useState(false);
+
+  useEffect(() => {
+    const getServices = async () => {
+      try {
+        setIsError(false);
+        const { data } = await axios.get(`${api.url}/services`);
+        setServices(data);
+        return data;
+      } catch (err) {
+        console.log(err);
+        setIsError(true);
+      }
+    };
+    getServices();
+  }, []);
 
   return (
     <div className="row">
@@ -15,7 +32,8 @@ export default function ServiceList() {
         </div>
         <div className="row">
           <div className="col-md-12">
-            {state.services.map(s => (
+            {isError && <div>Something went wrong ...</div>}
+            {services.map(s => (
               <div>
                 <div key={s} class="card">
                   <h5 className="card-header">{s.title}</h5>
