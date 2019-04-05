@@ -10,21 +10,21 @@ const Store = React.createContext({
       title: 'Lawn Maintenance',
       description: 'I will mow your lawn',
       email: 'test@test.com',
-      provider: 'Test User'
+      contact: 'Test User'
     },
     {
       id: 1,
       title: 'Barber Services',
       description: 'I will cut your hair',
       email: 'test@test.com',
-      provider: 'Test User'
+      contact: 'Test User'
     },
     {
       id: 1,
       title: 'Makeup',
       description: 'I will do your makeup',
       email: 'test@test.com',
-      provider: 'Test User'
+      contact: 'Test User'
     }
   ]
 });

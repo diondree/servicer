@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 // import Store from './context';
 // import reducer from './reducer';
@@ -6,8 +7,10 @@ import React from 'react';
 // import { usePersistedContext, usePersistedReducer } from './usePersist';
 
 import Header from './components/Header';
-import ServiceList from './components/ServiceList.js';
+import ServiceList from './components/ServiceList';
 import ServiceForm from './components/ServiceForm';
+import Signup from './components/SignupForm';
+import Login from './components/LoginForm';
 
 function App() {
   // create a global store to store the state
@@ -22,11 +25,16 @@ function App() {
   return (
     // <Store.Provider value={{ state, dispatch }}>
     <div>
-      <Header />
-      <div className="container">
-        <ServiceList />
-        <ServiceForm />
-      </div>
+      <Router>
+        <Header />
+        <div className="container">
+          <Route exact path="/" component={ServiceList} />
+          <Route exact path="/services" component={ServiceList} />
+          <Route exact path="/services/add" component={ServiceForm} />
+          <Route exact path="/signup" component={Signup} />
+          <Route exact path="/login" component={Login} />
+        </div>
+      </Router>
     </div>
     // </Store.Provider>
   );

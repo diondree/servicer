@@ -14,7 +14,7 @@ export default function ServiceList() {
         setServices(data);
         return data;
       } catch (err) {
-        console.log(err);
+        console.error(err);
         setIsError(true);
       }
     };
@@ -28,15 +28,19 @@ export default function ServiceList() {
           <div className="col-md-8">
             <br />
             <h4>Service List</h4>
+            <br />
           </div>
         </div>
         <div className="row">
           <div className="col-md-12">
             {isError && <div>Something went wrong ...</div>}
+            {services.length === 0 && (
+              <div>No services listed as yet. Feel free to list yours</div>
+            )}
             {services.map(s => (
-              <div>
-                <div key={s} class="card">
-                  <h5 className="card-header">{s.title}</h5>
+              <div key={s.id}>
+                <div className="card">
+                  <h5 className="card-header">{s.name}</h5>
                   <div className="card-body">
                     <h6 className="card-title">{s.provider}</h6>
                     <p className="card-text">{s.description}</p>
