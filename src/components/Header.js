@@ -19,9 +19,9 @@ export default function Header() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/signup" data-elem="header-signup">
+            {/** <Link className="nav-link" to="/signup" data-elem="header-signup">
               Signup
-            </Link>
+            </Link> */}
           </li>
         </ul>
       </div>
