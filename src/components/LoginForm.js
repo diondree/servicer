@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function SignupForm() {
+export default function LoginForm() {
   return (
-    <form>
+    <form method="POST">
       <div className="form-group row">
         <label for="staticEmail" className="col-sm-2 col-form-label">
           Email

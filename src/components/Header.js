@@ -18,11 +18,24 @@ export default function Header() {
               Add Service
             </Link>
           </li>
-          <li className="nav-item">
-            {/** <Link className="nav-link" to="/signup" data-elem="header-signup">
-              Signup
-            </Link> */}
-          </li>
+          {!localStorage.getItem('jwt') && (
+            <React.Fragment>
+              <li className="nav-item">
+                <Link
+                  className="nav-link"
+                  to="/signup"
+                  data-elem="header-signup"
+                >
+                  Signup
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/login" data-elem="header-login">
+                  Login
+                </Link>
+              </li>
+            </React.Fragment>
+          )}
         </ul>
       </div>
     </nav>

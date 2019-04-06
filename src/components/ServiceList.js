@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { api } from '../config';
 
 export default function ServiceList() {
@@ -10,7 +10,7 @@ export default function ServiceList() {
     const getServices = async () => {
       try {
         setIsError(false);
-        const { data } = await axios.get(`${api.url}/services`);
+        const { data } = await api.get(`/services`);
         setServices(data);
         return data;
       } catch (err) {
